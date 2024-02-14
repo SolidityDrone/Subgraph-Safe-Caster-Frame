@@ -1,0 +1,23 @@
+type Vote @entity (immutable: false){
+  id: ID!
+  votesCounter: BigInt!
+  fid: BigInt! # uint64
+  isAccepted: Boolean! # bool
+  proposalID: String! # string
+  transactionHash: String! # string
+}
+
+type Proposal @entity (immutable: false){
+  id: ID! 
+  votes: [Vote!] @hasMany(name: "votes", opposite: "proposal")
+  votesCounter: BigInt!
+  acceptedVotes: BigInt! # uint64
+  rejectedVotes: BigInt! # uint64 
+  treshold: BigInt! 
+  minimumFid: BigInt! 
+  token: String! # address
+  to: String! # address
+  amount: BigInt!
+  active: Boolean! # bool
+  creationTime: BigInt! 
+}

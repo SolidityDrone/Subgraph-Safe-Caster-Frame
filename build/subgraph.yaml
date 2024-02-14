@@ -1,0 +1,31 @@
+specVersion: 1.0.0
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Safecaster
+    network: sepolia
+    source:
+      address: "0x3590D281d523ddCd4c0449C98A1e320066c34636"
+      abi: Safecaster
+      startBlock: 5231737
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MessageCastAddVerified
+        - MessageFrameActionBodyVerified
+        - MessageReactionAddVerified
+        - ProposalCreated
+      abis:
+        - name: Safecaster
+          file: Safecaster\abis\Safecaster.json
+      eventHandlers:
+        - event: MessageFrameActionBodyVerified(uint64,uint32,uint64,bytes,bytes,uint256,bool,uint256,uint256)
+          handler: handleMessageFrameActionBodyVerified
+        - event: ProposalCreated(uint256,address,uint256,address,uint256,uint256,bool,uint256)
+          handler: handleProposalCreated
+        - event: ProposalExecuted(uint256,address,uint256,address,uint256,uint256,bool,uint256)
+          handler: handleProposalExecuted
+      file: Safecaster\Safecaster.wasm

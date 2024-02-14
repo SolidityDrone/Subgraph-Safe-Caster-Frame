@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "Safecaster": {
+      "address": "0x1a656F54B75aa38cCc52Af5e5f054840B33E4F81",
+      "startBlock": 5219823
+    }
+  }
+}
